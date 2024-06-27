@@ -1,7 +1,6 @@
-
 # Sparse Grid Integration
 
-This repository contains Python programs to test and compare the integration of various mathematical functions using sparse grid and full grid quadrature methods. The scripts provided are designed to handle integration in both two-dimensional and three-dimensional spaces.
+This folder contains Python programs to test and compare the integration of various mathematical functions using sparse grid and full grid quadrature methods. The scripts provided are designed to handle integration in both two-dimensional and three-dimensional spaces.
 
 ## File Descriptions
 
@@ -43,4 +42,5 @@ This script compares the efficiency and accuracy of sparse grid quadrature again
   - Accuracy: Compares the exact integral value with the computed quadrature values.
   - Efficiency: Evaluates the computational time and resource usage for both methods.
 - **Output**: Provides a detailed comparison of quadrature values, errors, and performance metrics for both sparse grid and full grid methods.
+
 
