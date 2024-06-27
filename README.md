@@ -1,1 +1,3 @@
 # Bachelor_Thesis_Karlsruhe_2024
+
+This repository contains the code for my Bachelor's thesis in July 2024 at the Karlsruhe Institute of Technology. The Python folder contains my implementation of sparse grid quadrature, a numerical quadrature algorithm based on hierarchical interpolation for approximating integrals over 2- and 3-dimensional rectangles. The mpp folder contains a copy of the M++ software (https://www.math.kit.edu/ianm3/seite/mplusplus/en). To reproduce the numerical results in my Bachelor's thesis, refer to the Jupyter Notebook located at mpp/notebooks/SC/UQ_SC_MC_Laplace.ipynb. For execution instructions, please refer to the M++ README file.
