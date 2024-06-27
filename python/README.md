@@ -4,7 +4,7 @@ This folder contains Python programs to test and compare the integration of vari
 
 ## File Descriptions
 
-### 1. `2D_sparse_grid_integration.py`
+### 1. `sparse_grid_integration_2D.py`
 
 This script performs sparse grid integration for random polynomial, exponential, and trigonometric functions in two dimensions. The main function in this script is `function_test()`.
 
@@ -17,7 +17,7 @@ This script performs sparse grid integration for random polynomial, exponential,
 - **Integration Method**: Sparse grid integration is used to compute the integral for different levels of discretization \( L \).
 - **Output**: The script prints the integration domain, the exact integral values, and the computed quadrature values along with their absolute errors for each function.
 
-### 2. `3D_sparse_grid_integration.py`
+### 2. `sparse_grid_integration_3D.py`
 
 This script extends the sparse grid integration to three dimensions. Similar to the 2D script, it tests random polynomial, exponential, and trigonometric functions but in three dimensions.
 
@@ -30,7 +30,7 @@ This script extends the sparse grid integration to three dimensions. Similar to 
 - **Integration Method**: Uses sparse grid integration to compute the integral for different levels of discretization \( L \).
 - **Output**: Prints the integration domain, exact integral values, computed quadrature values, and their absolute errors for each function.
 
-### 3. `sparse_grid_vs_full_grid_quadrature.py`
+### 3. `sparse_grid_vs_full_grid_quadrature_2D.py`
 
 This script compares the efficiency and accuracy of sparse grid quadrature against full grid quadrature.
 
