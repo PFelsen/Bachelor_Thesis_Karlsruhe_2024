@@ -1,0 +1,135 @@
+.benchmark_mlmc_acoustic_time_stepping_on_horeka:
+  extends: .benchmark_mluq_on_horeka
+  only:
+    variables:
+      - $BENCHMARK == $CI_JOB_NAME || $BENCHMARK == 'all' || $BENCHMARK == 'on-horeka' || $BENCHMARK == 'mlmc-acoustic-time-stepping-on-horeka'
+  variables:
+    CONFIG: 'MLMC_acoustic_time_stepping'
+    WTIME: '12:00:00'
+    PROCS: '1024'
+    NODES: '45'
+
+mlmc-acoustic-tiny-on-horeka:
+  extends: .benchmark_mlmc_acoustic_time_stepping_on_horeka
+  variables:
+    LABEL: 'ParallelEstimator'
+  script:
+    - PROCS=512 && NODES=15 && WTIME=02:00:00
+    - salloc -p cpuonly -t $WTIME -N $NODES -n $PROCS mpirun M++ $CONFIG logfile=$PROCS WTime=$WTIME ParallelEstimator=true initSamples=[4096,1024,128,32] logfile=UseConfigEntries[$LABEL] DelayedUpdate=true
+
+
+mlmc-acoustic-cfl-on-horeka:
+  extends: .benchmark_mlmc_acoustic_time_stepping_on_horeka
+  variables:
+    LABEL: 'CFL'
+  script:
+    - $SALLOC CFL=0.0625
+    - $SALLOC CFL=0.125
+    - $SALLOC CFL=0.25
+    - $SALLOC CFL=0.5
+    - $SALLOC CFL=1.0
+
+mlmc-acoustic-parallelization-on-horeka:
+  extends: .benchmark_mlmc_acoustic_time_stepping_on_horeka
+  variables:
+    LABEL: 'ParallelEstimator'
+  script:
+    - PROCS=2048 && NODES=90
+    - salloc -p cpuonly -t $WTIME -N $NODES -n $PROCS mpirun M++ $CONFIG logfile=$PROCS WTime=$WTIME ParallelEstimator=true initSamples=[4096,1024,128,32] logfile=UseConfigEntries[$LABEL] DelayedUpdate=true
+    - salloc -p cpuonly -t $WTIME -N $NODES -n $PROCS mpirun M++ $CONFIG logfile=$PROCS WTime=$WTIME ParallelEstimator=false initSamples=[256,64,16,4] logfile=UseConfigEntries[$LABEL] DelayedUpdate=true
+
+mlmc-acoustic-weak-scaling-on-horeka-eta09:
+  extends: .benchmark_mlmc_acoustic_time_stepping_on_horeka
+  variables:
+    LABEL: 'logfile'
+    ETA: '0.9'
+  script:
+    - PROCS=8192 && NODES=180
+    - salloc -p cpuonly -t $WTIME -N $NODES -n $PROCS mpirun M++ $CONFIG logfile=$PROCS WTime=$WTIME DelayedUpdate=true initSamples=[8192,1024,128,32] eta=$ETA
+#    - PROCS=4096 && NODES=180
+#    - salloc -p cpuonly -t $WTIME -N $NODES -n $PROCS mpirun M++ $CONFIG logfile=$PROCS WTime=$WTIME DelayedUpdate=true initSamples=[4096,1024,128,32] eta=$ETA
+#    - PROCS=2048 && NODES=90
+#    - salloc -p cpuonly -t $WTIME -N $NODES -n $PROCS mpirun M++ $CONFIG logfile=$PROCS WTime=$WTIME DelayedUpdate=true initSamples=[4096,1024,128,32] eta=$ETA
+#    - PROCS=1024 && NODES=45
+#    - salloc -p cpuonly -t $WTIME -N $NODES -n $PROCS mpirun M++ $CONFIG logfile=$PROCS WTime=$WTIME DelayedUpdate=true initSamples=[4096,1024,128,32] eta=$ETA
+#    - PROCS=512 && NODES=20
+#    - salloc -p cpuonly -t $WTIME -N $NODES -n $PROCS mpirun M++ $CONFIG logfile=$PROCS WTime=$WTIME DelayedUpdate=true initSamples=[1024,256,64,16] eta=$ETA
+#    - PROCS=256 && NODES=15
+#    - salloc -p cpuonly -t $WTIME -N $NODES -n $PROCS mpirun M++ $CONFIG logfile=$PROCS WTime=$WTIME DelayedUpdate=true initSamples=[1024,256,64,16] eta=$ETA
+#    - PROCS=128 && NODES=8
+#    - salloc -p cpuonly -t $WTIME -N $NODES -n $PROCS mpirun M++ $CONFIG logfile=$PROCS WTime=$WTIME DelayedUpdate=true initSamples=[256,64,16,4] eta=$ETA
+#    - PROCS=64 && NODES=5
+#    - salloc -p cpuonly -t $WTIME -N $NODES -n $PROCS mpirun M++ $CONFIG logfile=$PROCS WTime=$WTIME DelayedUpdate=true initSamples=[256,64,16,4] eta=$ETA
+
+mlmc-acoustic-weak-scaling-on-horeka-eta08:
+  extends: mlmc-acoustic-weak-scaling-on-horeka-eta09
+  variables:
+    LABEL: 'logfile'
+    ETA: '0.8'
+
+mlmc-acoustic-weak-scaling-on-horeka-eta07:
+  extends: mlmc-acoustic-weak-scaling-on-horeka-eta09
+  variables:
+    LABEL: 'logfile'
+    ETA: '0.7'
+
+mlmc-acoustic-weak-scaling-on-horeka-eta06:
+  extends: mlmc-acoustic-weak-scaling-on-horeka-eta09
+  variables:
+    LABEL: 'logfile'
+    ETA: '0.6'
+
+mlmc-acoustic-time-stepping-rkorder-on-horeka:
+  extends: .benchmark_mlmc_acoustic_time_stepping_on_horeka
+  variables:
+    LABEL: 'rkorder'
+  script:
+    - $SALLOC rkorder=-2    # Implicit Midpoint rule
+    - $SALLOC rkorder=-102  # Crank Nicolson
+    - $SALLOC rkorder=-202  # Diagonal implicit RK 2. Order
+
+mlmc-acoustic-time-stepping-smoothing-on-horeka:
+  extends: .benchmark_mlmc_acoustic_time_stepping_on_horeka
+  variables:
+    LABEL: 'smoothing'
+  script:
+    - $SALLOC smoothing=1.5
+    - $SALLOC smoothing=1.6
+    - $SALLOC smoothing=1.7
+    - $SALLOC smoothing=1.8
+
+mlmc-acoustic-time-stepping-sigma-on-horeka:
+  extends: .benchmark_mlmc_acoustic_time_stepping_on_horeka
+  variables:
+    LABEL: 'sigma'
+  script:
+    - $SALLOC sigma=0.50
+    - $SALLOC sigma=0.75
+    - $SALLOC sigma=1.00
+
+mlmc-acoustic-time-stepping-degree-on-horeka:
+  extends: .benchmark_mlmc_acoustic_time_stepping_on_horeka
+  variables:
+    LABEL: 'degree'
+  script:
+    - $SALLOC degree=1 Quantity=Energy initSamples=[16384,2048,256,32]
+    - $SALLOC degree=2 Quantity=Energy initSamples=[4096,1024,128,32]
+    - $SALLOC degree=3 Quantity=Energy initSamples=[512,128,32,8]
+
+mlmc-acoustic-time-stepping-degree-l2-on-horeka:
+  extends: .benchmark_mlmc_acoustic_time_stepping_on_horeka
+  variables:
+    LABEL: 'degree'
+  script:
+    - $SALLOC degree=1 initSamples=[16384,2048,256,32]
+    - $SALLOC degree=2 initSamples=[4096,1024,128,32]
+    - $SALLOC degree=3 initSamples=[512,128,32,8]
+
+mlmc-acoustic-time-stepping-theta-on-horeka:
+  extends: .benchmark_mlmc_acoustic_time_stepping_on_horeka
+  variables:
+    LABEL: 'theta'
+  script:
+    - $SALLOC theta=0.3
+    - $SALLOC theta=0.5
+    - $SALLOC theta=0.7

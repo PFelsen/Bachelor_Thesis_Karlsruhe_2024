@@ -1,0 +1,43 @@
+.downstream_template:
+  stage: downstream
+  variables:
+    TRIGGER_ORIGIN: "mpp_pipeline"
+    PRIORITY: $PRIORITY
+  only:
+    variables:
+      - ($RUN_PROJECTS == $CI_JOB_NAME || $RUN_PROJECTS == 'all') && ($BENCHMARK == 'none')
+
+cardmech:
+  extends: .downstream_template
+  trigger:
+    project: kit/mpp/cardmech
+    branch: feature
+    strategy: depend
+
+navierstokes:
+  extends: .downstream_template
+  trigger:
+    project: kit/mpp/navierstokes
+    branch: master
+    strategy: depend
+
+dgwave:
+  extends: .downstream_template
+  trigger:
+    project: kit/mpp/dgwave
+    branch: master
+    strategy: depend
+
+fwi:
+  extends: .downstream_template
+  trigger:
+    project: kit/mpp/fwi
+    branch: master
+    strategy: depend
+
+cdd:
+  extends: .downstream_template
+  trigger:
+    project: kit/mpp/cdd
+    branch: main
+    strategy: depend

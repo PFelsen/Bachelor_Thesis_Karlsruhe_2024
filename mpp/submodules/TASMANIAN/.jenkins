@@ -1,0 +1,179 @@
+pipeline {
+    agent none
+    stages {
+        stage('Automated testing') {
+            when {
+                not {
+                    branch 'master'
+                }
+            }
+            parallel {
+                stage('Clang14-Python3.10') {
+                    agent {
+                        dockerfile {
+                            filename 'Dockerfile_stack'
+                            dir 'docker'
+                            label 'docker'
+                        }
+                    }
+                    steps {
+                        sh '''rm -rf build && mkdir -p build && cd build &&
+cmake \
+  -D CMAKE_INSTALL_PREFIX=./TasmanianInstall \
+  -D CMAKE_CXX_FLAGS="-O3 -Wall -Wextra -Wshadow -pedantic" \
+  -D CMAKE_CXX_COMPILER=clang++ \
+  -D Tasmanian_ENABLE_PYTHON=ON \
+  -D Tasmanian_TESTS_OMP_NUM_THREADS=4 \
+.. &&
+                              make -j4 &&
+                              ctest -j4 -V --no-compress-output -T Test &&
+                              make install &&
+                              make test_install
+                        '''
+                    }
+                    post {
+                        always {
+                            xunit([CTest(deleteOutputFiles: true, failIfNotNew: true, pattern: 'build/Testing/**/Test.xml', skipNoTestFiles: false, stopProcessingIfError: true)])
+                        }
+                    }
+                }
+                stage('GCC11.2-Python3.10-OpenMPI') {
+                    agent {
+                        dockerfile {
+                            filename 'Dockerfile_stack'
+                            dir 'docker'
+                            label 'docker'
+                        }
+                    }
+                    steps {
+                        sh '''rm -rf build && mkdir -p build && cd build &&
+cmake \
+  -D CMAKE_INSTALL_PREFIX=./TasmanianInstall \
+  -D CMAKE_CXX_FLAGS="-Wall -Wextra -Wshadow -pedantic" \
+  -D CMAKE_CXX_COMPILER=g++ \
+  -D Tasmanian_ENABLE_RECOMMENDED=ON \
+  -D Tasmanian_ENABLE_MPI=ON \
+  -D MPIEXEC_PREFLAGS="--allow-run-as-root" \
+  -D Tasmanian_ENABLE_FORTRAN=ON \
+  -D Tasmanian_TESTS_OMP_NUM_THREADS=2 \
+.. &&
+                              make -j4 &&
+                              ctest -j2 -V --no-compress-output -T Test &&
+                              make install &&
+                              make test_install
+                        '''
+                    }
+                    post {
+                        always {
+                            xunit([CTest(deleteOutputFiles: true, failIfNotNew: true, pattern: 'build/Testing/**/Test.xml', skipNoTestFiles: false, stopProcessingIfError: true)])
+                        }
+                    }
+                }
+                stage('CUDA11.3') {
+                    agent {
+                        dockerfile {
+                            filename 'Dockerfile.cuda'
+                            dir 'docker'
+                            label 'nvidia-docker'
+                        }
+                    }
+                    steps {
+                        sh '''rm -rf build && mkdir -p build && cd build &&
+cmake \
+  -D CMAKE_INSTALL_PREFIX=./TasmanianInstall \
+  -D CMAKE_BUILD_TYPE=Release \
+  -D CMAKE_CXX_FLAGS="-Wall -Wextra -Wshadow" \
+  -D Tasmanian_ENABLE_OPENMP=ON \
+  -D Tasmanian_ENABLE_BLAS=ON \
+  -D Tasmanian_ENABLE_CUDA=ON \
+  -D Tasmanian_ENABLE_MAGMA=OFF \
+  -D Tasmanian_ENABLE_PYTHON=ON \
+  -D Tasmanian_ENABLE_MPI=OFF \
+  -D Tasmanian_ENABLE_FORTRAN=ON \
+  -D Tasmanian_TESTS_OMP_NUM_THREADS=4 \
+.. &&
+                              make -j4 &&
+                              ctest -j4 -V --no-compress-output -T Test &&
+                              make install &&
+                              make test_install
+                        '''
+                    }
+                    post {
+                        always {
+                            xunit([CTest(deleteOutputFiles: true, failIfNotNew: true, pattern: 'build/Testing/**/Test.xml', skipNoTestFiles: false, stopProcessingIfError: true)])
+                        }
+                    }
+                }
+                stage('ROCm HIPCC') {
+                    agent {
+                        dockerfile {
+                            filename 'Dockerfile.rocm'
+                            dir 'docker'
+                            additionalBuildArgs '--build-arg BASE=rocm/dev-ubuntu-20.04:4.3'
+                            args '--device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined --group-add video --env HIP_VISIBLE_DEVICES=${HIP_VISIBLE_DEVICES}'
+                            label 'rocm-docker && vega'
+                        }
+                    }
+                    steps {
+                        sh '''rm -rf build && mkdir -p build && cd build &&
+cmake \
+  -D CMAKE_INSTALL_PREFIX=./TasmanianInstall \
+  -D CMAKE_BUILD_TYPE=Release \
+  -D CMAKE_CXX_FLAGS="-Wall -Wextra -Wshadow" \
+  -D CMAKE_CXX_COMPILER=/opt/rocm/bin/hipcc \
+  -D PYTHON_EXECUTABLE=/usr/bin/python3 \
+  -D Tasmanian_ENABLE_OPENMP=ON \
+  -D Tasmanian_ENABLE_BLAS=ON \
+  -D Tasmanian_ENABLE_CUDA=OFF \
+  -D Tasmanian_ENABLE_HIP=ON \
+  -D Tasmanian_ENABLE_MAGMA=OFF \
+  -D Tasmanian_ENABLE_PYTHON=ON \
+  -D Tasmanian_ENABLE_MPI=OFF \
+  -D Tasmanian_ENABLE_FORTRAN=OFF \
+  -D Tasmanian_TESTS_OMP_NUM_THREADS=4 \
+.. &&
+                              make -j4 &&
+                              ./Tasgrid/tasgrid -v &&
+                              ctest -j4 -V --no-compress-output -T Test &&
+                              make install &&
+                              make test_install
+                        '''
+                    }
+                    post {
+                        always {
+                            xunit([CTest(deleteOutputFiles: true, failIfNotNew: true, pattern: 'build/Testing/**/Test.xml', skipNoTestFiles: false, stopProcessingIfError: true)])
+                        }
+                    }
+                }
+            }
+        }
+        stage('Deploy documentation') {
+            when {
+                 branch 'master'
+            }
+            agent {
+                dockerfile {
+                    filename 'Dockerfile.doxygen'
+                    dir 'docker'
+                    label 'docker'
+                }
+            }
+            environment {
+                GIT_CREDS = credentials('0f170146-bd5e-44c0-a6e0-4f6fac3230fa')
+            }
+            steps {
+                sh '''rm -rf build_doc && mkdir -p build_doc && cd build_doc &&
+                      cmake -DTasmanian_ENABLE_DOXYGEN=ON -DDOXYGEN_INTERNAL_DOCS=YES .. &&
+                      make Tasmanian_doxygen &&
+                      git config http.sslVerify false
+                      git fetch origin gh-pages &&
+                      git checkout -B gh-pages FETCH_HEAD^ &&
+                      rm -rf ../rolling && mv Doxygen/html ../rolling && git add --all ../rolling &&
+                      git config user.email "noreply@ornl.gov" &&
+                      git config user.name "Jenkins CI" &&
+                      git commit -m "Automated documentation update" &&
+                      git push -f https://$GIT_CREDS@github.com/ORNL/TASMANIAN.git gh-pages'''
+            }
+        }
+    }
+}

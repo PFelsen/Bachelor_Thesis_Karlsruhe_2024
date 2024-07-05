@@ -1,0 +1,21 @@
+[submodule "googletest"]
+	path = submodules/googletest
+	url = https://github.com/google/googletest.git
+[submodule "benchmark"]
+	path = submodules/benchmark
+	url = https://github.com/google/benchmark.git
+[submodule "superlu"]
+	path = submodules/superlu
+	url = https://github.com/xiaoyeli/superlu.git
+[submodule "json"]
+	path = submodules/json
+	url = https://github.com/nlohmann/json.git
+[submodule "pugixml"]
+	path = submodules/pugixml
+	url = https://github.com/zeux/pugixml.git
+[submodule "TASMANIAN"]
+	path = submodules/TASMANIAN
+	url = https://github.com/ORNL/TASMANIAN.git
+[submodule "sprng5"]
+	path = submodules/sprng5
+	url = https://gitlab.kit.edu/kit/mpp/sprng5.git

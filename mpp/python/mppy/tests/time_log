@@ -1,0 +1,12 @@
+start program on 4 procs at Tue Aug 11 17:30:59 2020
+
+   TransportMain: Run
+     DGTI: n=0   t=0       Energy=4             Mass=1             Error=0
+     DGTI: n=1   t=0.03125 Energy=2.8140099     Mass=1             Error=0.95824483
+     DGTI: n=2   t=0.0625  Energy=2.2524386     Mass=1             Error=1.250116
+     DGTI: n=3   t=0.09375 Energy=1.9247726     Mass=1             Error=1.4509821
+     DGTI: n=4   t=0.125   Energy=1.7068081     Mass=0.99999999    Error=1.6126332     OFR=6.655273e-07
+     DGTI: 19.16 seconds
+   TransportMain: 19.16 seconds
+
+end program after 19.28 seconds on 4 procs at Tue Aug 11 17:31:19 2020

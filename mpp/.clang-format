@@ -1,0 +1,53 @@
+#BasedOnStyle: Google
+Language: Cpp
+#PenaltyBreakBeforeFirstCallParameter: 100000
+Standard: c++20
+IncludeCategories:
+  # C Header: <linux/foo.h>, etc
+  - Regex:           '^(<((linux/|lib/|sys/)[a-zA-Z0-9_/-]+\.h)>)'
+    Priority:        1
+  # Cpp Header: <foo> and <experimental/foo>
+  - Regex:           '^(<(experimental/)*[a-zA-Z0-9_-]+>)'
+    Priority:        2
+  # Libraries: <foo/bar.h> and <foo/bar.hpp>
+  - Regex:           '^(<[a-zA-Z0-9_/-]+\.(h|hpp)>)'
+    Priority:        3
+  # Local headers: "foo/bar.h" and "foo/bar.hpp"
+  - Regex:           '^("[.a-zA-Z0-9_/-]+\.(h|hpp)")'
+    Priority:        4
+
+ColumnLimit: 100
+ContinuationIndentWidth: 4
+IndentWidth: 2
+AccessModifierOffset: -2
+AlignAfterOpenBracket: Align
+AllowShortFunctionsOnASingleLine: All
+AllowShortIfStatementsOnASingleLine: AllIfsAndElse
+AllowShortBlocksOnASingleLine: Always
+AllowShortLoopsOnASingleLine: false
+AlwaysBreakTemplateDeclarations: Yes
+BreakBeforeBraces: Attach
+BreakAfterAttributes: Always
+BreakBeforeTernaryOperators: false
+BinPackArguments: true
+BinPackParameters: true
+Cpp11BracedListStyle: true
+PointerAlignment: Right
+ReferenceAlignment: Right
+MaxEmptyLinesToKeep: 2
+SpaceBeforeCpp11BracedList: false
+SpacesInConditionalStatement: false
+SpaceAfterTemplateKeyword: false
+SpacesInAngles: Never
+SpaceBeforeCtorInitializerColon: true
+SpaceBeforeCaseColon: false
+SpaceAfterLogicalNot: false
+SeparateDefinitionBlocks: Always
+IndentAccessModifiers: false
+EmptyLineAfterAccessModifier: Never
+EmptyLineBeforeAccessModifier: Never
+BreakConstructorInitializers: AfterColon
+BreakInheritanceList: AfterColon
+PenaltyBreakBeforeFirstCallParameter: 100000
+PackConstructorInitializers: BinPack
+BreakBeforeBinaryOperators: NonAssignment
