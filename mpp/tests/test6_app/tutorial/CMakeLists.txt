@@ -1,0 +1,40 @@
+# Manage folder structure build folder
+if (${PROJECT_MPP_DIR} STREQUAL ${PROJECT_SOURCE_DIR})
+    #file(COPY ${PROJECT_MPP_DIR}/tutorial/conf DESTINATION ${PROJECT_BINARY_DIR}/tutorial/)
+    file(MAKE_DIRECTORY ${PROJECT_BINARY_DIR}/tutorial/tests/data/vtk)
+    file(MAKE_DIRECTORY ${PROJECT_BINARY_DIR}/tutorial/tests/data/vtu)
+    file(MAKE_DIRECTORY ${PROJECT_BINARY_DIR}/tutorial/tests/data/gp)
+    file(MAKE_DIRECTORY ${PROJECT_BINARY_DIR}/tutorial/tests/data/py)
+    file(MAKE_DIRECTORY ${PROJECT_BINARY_DIR}/tutorial/tests/log)
+    file(MAKE_DIRECTORY ${PROJECT_BINARY_DIR}/tutorial/tests/data/dual)
+else ()
+    #file(COPY ${PROJECT_MPP_DIR}/tutorial/conf DESTINATION ${PROJECT_BINARY_DIR}/mpp/tutorial/)
+    file(MAKE_DIRECTORY ${PROJECT_BINARY_DIR}/mpp/tutorial/tests/data/vtk)
+    file(MAKE_DIRECTORY ${PROJECT_BINARY_DIR}/mpp/tutorial/tests/data/vtu)
+    file(MAKE_DIRECTORY ${PROJECT_BINARY_DIR}/mpp/tutorial/tests/data/gp)
+    file(MAKE_DIRECTORY ${PROJECT_BINARY_DIR}/mpp/tutorial/tests/data/py)
+    file(MAKE_DIRECTORY ${PROJECT_BINARY_DIR}/mpp/tutorial/tests/log)
+    file(MAKE_DIRECTORY ${PROJECT_BINARY_DIR}/mpp/tutorial/tests/data/dual)
+endif ()
+
+
+if (USE_SPACETIME)
+    add_mpi_test(TestPollutionProblem LIB_APP)
+    add_mpi_test(TestTransportEquality_ST_TS LIB_APP)
+endif ()
+
+if (BUILD_TUTORIAL)
+    # Test Executables
+    add_mpp_test(TestEllipticConsistency LIB_APP)
+    add_mpp_test(TestVectorValuedConsistency LIB_APP)
+    add_mpp_test(TestVectorValuedMain LIB_APP)
+
+    add_mpi_test(TestTransportPDESolver LIB_APP)
+    add_mpi_test(TestEllipticPDESolver LIB_APP)
+    add_mpi_test(TestReactionPDESolver LIB_APP)
+    add_mpi_test(TestAcousticPDESolver LIB_APP)
+endif ()
+
+if (USE_CXSC)
+    add_mpi_test(TestEigenvalueExample LIB_APP)
+endif ()

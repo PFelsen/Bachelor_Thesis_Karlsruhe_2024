@@ -1,0 +1,120 @@
+{
+  "technicalMetadata": {
+    "retentionPeriod": 10,
+    "responsibleEmail": "christian.wieners@kit.edu",
+    "schema": {
+      "key": "RDDM",
+      "version": "9.1"
+    }
+  },
+  "descriptiveMetadata": {
+    "creators": {
+      "creator": [
+        {
+          "creatorName": "Christian Wieners"
+        },
+        {
+          "creatorName": "Daniele Corallo"
+        },
+        {
+          "creatorName": "David Schneiderhan"
+        },
+        {
+          "creatorName": "Laura Stengel"
+        },
+        {
+          "creatorName": "Laura Lindner"
+        },
+        {
+          "creatorName": "Christian Rheinbay"
+        },
+        {
+          "creatorName": "Niklas Baumgarten"
+        }
+      ]
+    },
+    "title": "Mpp 3.1.1",
+    "descriptions": {
+      "description": [
+        {
+          "value": "Release notes: https://gitlab.kit.edu/kit/mpp/mpp/-/tags/3.3.0",
+          "descriptionType": "ABSTRACT"
+        }
+      ]
+    },
+    "keywords": {
+      "keyword": [
+        {
+          "value": "FEM"
+        },
+        {
+          "value": "HPC"
+        }
+      ]
+    },
+    "relatedInformations": {
+      "relatedInformation": [
+        {
+          "value": "Tested and benchmarked on Ubuntu 22.04"
+        }
+      ]
+    },
+    "language": "ENG",
+    "publishers": {
+      "publisher": [
+         {
+            "nameIdentifierScheme": "ROR",
+            "schemeURI": "https://ror.org/",
+            "nameIdentifier": "https://ror.org/04t3en479",
+            "value": "Karlsruhe Institute of Technology (KIT)"
+          }
+         ]
+     },
+    "productionYear": 2023,
+    "publicationYear": 2023,
+    "subjectAreas": {
+      "subjectArea": [
+        {
+          "controlledSubjectAreaName": "MATHEMATICS"
+        }
+      ]
+    },
+    "resource": {
+      "value": "Source files and benchmark results",
+      "resourceType": "SOFTWARE"
+    },
+    "software": {
+      "softwareType": [
+        {
+          "softwareName": [
+            {
+              "value": "Meshes, Multigrid and more (M++)",
+              "softwareVersion": "X.X.X"
+            }
+          ],
+          "type": "RESOURCE_PRODUCTION"
+        }
+      ]
+    },
+    "rights": {
+      "controlledRights": "GNU_GENERAL_PUBLIC_LICENSE_V_3_0_ONLY"
+    },
+    "rightsHolders": {
+      "rightsHolder": [
+        {
+          "nameIdentifierScheme": "ROR",
+          "schemeURI": "https://ror.org/",
+          "nameIdentifier": "https://ror.org/04t3en479",
+          "value": "Karlsruhe Institute of Technology (KIT)"
+        }
+      ]
+    },
+    "fundingReferences": {
+      "fundingReference": [
+        {
+          "funderName": "Deutsche Forschungsgemeinschaft (DFG)"
+        }
+      ]
+    }
+  }
+}

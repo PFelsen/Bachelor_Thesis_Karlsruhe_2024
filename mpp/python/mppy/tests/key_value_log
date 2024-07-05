@@ -1,0 +1,26 @@
+start program on 4 procs at Tue Aug 11 17:30:59 2020
+   Config Info:
+     Problem: .................. Laplace2D
+
+   Meshes Info:
+     Mesh Name: ................ UnitSquare
+     Level: .................... 6
+     Mesh width: ............... [0.015625, 0.015625]
+     initLevels: ............... [2, 3, 4]
+     initSamples: .............. [5]
+     MeshInfo: ................. [0 1 2 3]
+
+   Time Series Info:
+     Time Series Name: ......... UniformTimeSeries
+     t0: ....................... 0
+     T: ........................ 2
+     dt: ....................... 0.03125
+
+   Random Parsing Info:
+     int and float: ............ [4.0, 2, 1.3, -4]
+     list with spaces: ......... [     4.0,    2,   1.3, -4]
+     list with other spaces: ... [  4.0,    2,   1.3,  -4 ]
+     Table with spaces: ........ [  4.000000,    2.000000,    1.300000,    -4.000000 ]
+     space-time Cells: ......... [ 4194304, 4194304, 4194304, 4194304, 4194304, 0 ]
+
+end program after 19.28 seconds on 4 procs at Tue Aug 11 17:31:19 2020
