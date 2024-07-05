@@ -27,9 +27,9 @@ This script performs sparse grid integration for random polynomial, exponential,
 - **Random Coefficients and Exponents**: The script generates random coefficients and exponents for the functions.
 - **Integration Domain**: The integration domain is randomly chosen within specified bounds.
 - **Functions Tested**:
-  - Polynomial: $ f(x, y) = a \cdot x^k \cdot b \cdot y^n $
-  - Exponential: $ g(x, y) = a \cdot \exp(2x) $
-  - Trigonometric: $ h(x, y) = \cos(a \cdot x) \cdot \cos(b \cdot y) $
+  - Polynomial: \( f(x, y) = a \cdot x^k \cdot b \cdot y^n \)
+  - Exponential: \( g(x, y) = a \cdot \exp(2x) \)
+  - Trigonometric: \( h(x, y) = \cos(a \cdot x) \cdot \cos(b \cdot y) \)
 - **Integration Method**: Sparse grid integration is used to compute the integral for different levels of discretization \( L \).
 - **Output**: The script prints the integration domain, the exact integral values, and the computed quadrature values along with their absolute errors for each function.
 
