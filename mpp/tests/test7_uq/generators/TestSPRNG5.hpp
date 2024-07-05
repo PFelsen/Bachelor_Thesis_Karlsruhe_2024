@@ -1,4 +1,0 @@
-#ifndef TESTSPRNG5_HPP
-#define TESTSPRNG5_HPP
-
-#endif // TESTSPRNG5_HPP

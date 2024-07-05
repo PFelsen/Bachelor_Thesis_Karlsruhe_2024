@@ -1,7 +1,0 @@
-POINTS:
-0
-1
-CELLS:
-2 1 0 1
-TIMES:
-0 1

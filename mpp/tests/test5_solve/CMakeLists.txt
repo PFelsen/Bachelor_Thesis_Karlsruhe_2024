@@ -1,5 +1,0 @@
-add_mpp_test(timeseries/TestTimeSeries LIB_SOLVE)
-add_mpp_test(polyproblems/TestPolynomialProblems LIB_SOLVE)
-add_mpp_test(timeintegrator/TestTimeIntegrator LIB_SOLVE)
-add_mpp_test(timeintegrator/TestTimeIntegratorEOC LIB_SOLVE)
-add_mpi_test(eigensolver/TestEigenSolver LIB_SOLVE)

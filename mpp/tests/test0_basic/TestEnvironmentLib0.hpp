@@ -1,6 +1,0 @@
-#ifndef TESTENVIRONMENTLIB0_HPP
-#define TESTENVIRONMENTLIB0_HPP
-
-#include "TestEnvironment.hpp"
-
-#endif // TESTENVIRONMENTLIB0_HPP
