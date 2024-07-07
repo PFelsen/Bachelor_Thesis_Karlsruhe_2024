@@ -20,41 +20,35 @@ This folder contains Python programs to test and compare the integration of vari
 
 ### File Descriptions
 
-#### 1. `sparse_grid_integration_2D.py`
+### `sparse_grid_integration_2D.py`
+This file contains the implementation of sparse grid integration for two-dimensional functions. It includes functions for defining piecewise linear basis functions, computing hierarchical surpluses, and performing the sparse grid integration.
 
-This script performs sparse grid integration for random polynomial, exponential, and trigonometric functions in two dimensions. The main function in this script is `function_test()`.
+#### Main Functions:
+- `phi(x)`: Computes the value of the piecewise linear function.
+- `phi_j_k(x, j, k, a, b)`: Computes the value of the scaled and translated piecewise linear function.
+- `int_phi(l, a, b)`: Computes the integral values for the function.
+- `delta(f, l_1, l_2, i_1, i_2, a, b, c, d)`: Computes the hierarchical surplus for a given function at specific levels and indices.
+- `J(k)`: Generates the index set for a given level.
+- `sparse_grid_integration(f, L, X, Y)`: Computes the integral for a given function in two dimensions over \([a, b] \times [c, d]\).
+- `function_test()`: Tests the sparse grid integration with random polynomial, exponential, and trigonometric functions in two dimensions.
 
-- **Random Coefficients and Exponents**: The script generates random coefficients and exponents for the functions.
-- **Integration Domain**: The integration domain is randomly chosen within specified bounds.
-- **Functions Tested**:
-  - Polynomial: \( f(x, y) = a \cdot x^k \cdot b \cdot y^n \)
-  - Exponential: \( g(x, y) = a \cdot \exp(2x) \)
-  - Trigonometric: \( h(x, y) = \cos(a \cdot x) \cdot \cos(b \cdot y) \)
-- **Integration Method**: Sparse grid integration is used to compute the integral for different levels of discretization \( L \).
-- **Output**: The script prints the integration domain, the exact integral values, and the computed quadrature values along with their absolute errors for each function.
+### `sparse_grid_integration_3D.py`
+This file contains the implementation of sparse grid integration for three-dimensional functions. It includes functions for defining piecewise linear basis functions, computing hierarchical surpluses, and performing the sparse grid integration in three dimensions.
 
-#### 2. `sparse_grid_integration_3D.py`
+#### Main Functions:
+- `phi(x)`: Computes the value of the piecewise linear function.
+- `phi_j_k(x, j, k, a, b)`: Computes the value of the scaled and translated piecewise linear function.
+- `int_phi(l, a, b)`: Computes the integral values for the function.
+- `delta(f, l_1, l_2, l_3, i_1, i_2, i_3, a, b, c, d, e, g)`: Computes the hierarchical surplus for a given function at specific levels and indices in three dimensions.
+- `J(k)`: Generates the index set for a given level.
+- `sparse_grid_integration(f, L, X, Y, Z)`: Computes the integral for a given function in three dimensions over \([a, b] \times [c, d] \times [e, g]\).
+- `function_test()`: Tests the sparse grid integration with random polynomial, exponential, and trigonometric functions in three dimensions.
 
-This script extends the sparse grid integration to three dimensions. Similar to the 2D script, it tests random polynomial, exponential, and trigonometric functions but in three dimensions.
+### `sparse_grid_vs_full_grid_quadrature_2D.py`
+This file contains scripts to compare the performance and error of sparse grid quadrature versus full grid quadrature in two dimensions. It includes functions to compute the integral using both sparse and full grids and plots the errors.
 
-- **Random Coefficients and Exponents**: Generates random coefficients and exponents for the functions in three dimensions.
-- **Integration Domain**: The integration domain is chosen randomly within specified bounds.
-- **Functions Tested**:
-  - Polynomial: \( f(x, y, z) = a \cdot x^k \cdot b \cdot y^n \cdot c \cdot z^m \)
-  - Exponential: \( g(x, y, z) = a \cdot \exp(2x + 3y + 4z) \)
-  - Trigonometric: \( h(x, y, z) = \cos(a \cdot x) \cdot \cos(b \cdot y) \cdot \cos(c \cdot z) \)
-- **Integration Method**: Uses sparse grid integration to compute the integral for different levels of discretization \( L \).
-- **Output**: Prints the integration domain, exact integral values, computed quadrature values, and their absolute errors for each function.
+### `sparse_vs_full_error_polynomial_plots.py`
+This file includes scripts to plot the errors of sparse grid and full grid quadrature methods for polynomial functions of varying degrees. It showcases the efficiency and accuracy of sparse grid methods in higher dimensions.
 
-#### 3. `sparse_grid_vs_full_grid_quadrature_2D.py`
-
-This script compares the efficiency and accuracy of sparse grid quadrature against full grid quadrature.
-
-- **Integration Methods**:
-  - Sparse Grid Quadrature: Uses sparse grids for multidimensional integration.
-  - Full Grid Quadrature: Uses full tensor grids for multidimensional integration.
-- **Functions Tested**: Can be configured to test various polynomial, exponential, and trigonometric functions.
-- **Performance Metrics**:
-  - Accuracy: Compares the exact integral value with the computed quadrature values.
-  - Efficiency: Evaluates the computational time and resource usage for both methods.
-- **Output**: Provides a detailed comparison of quadrature values, errors, and performance metrics for both sparse grid and full grid methods.
+### `sparse_vs_full_grid_random_polynomial_test.py`
+This file contains tests comparing the performance of sparse grid and full grid methods using randomly generated polynomial functions. It evaluates the accuracy and computational time of both methods across different polynomial degrees and levels of refinement.
