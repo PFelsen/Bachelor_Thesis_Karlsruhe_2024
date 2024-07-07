@@ -131,7 +131,7 @@ def sparse_grid_integration(f, L, X, Y):
     
     Parameters:
         f (function): The function to be integrated. Must accept two arguments (x, y).
-        L (tuple): A tuple containing the maximum levels of refinement in each dimension (L[0] for x, L[1] for y).
+        L (int): Maximum level of refinement in each dimension.
         X (array): An array containing the interval [a,b] in x-direction.
         Y (array): An array containing the interval [c,d] in y-direction.
         
@@ -159,7 +159,7 @@ def full_grid_integration(f, L, X, Y):
     
     Parameters:
         f (function): The function to be integrated. Must accept two arguments (x, y).
-        L (tuple): A tuple containing the maximum levels of refinement in each dimension (L[0] for x, L[1] for y).
+        L (int): Maximum level of refinement in each dimension.
         X (array): An array containing the interval [a,b] in x-direction.
         Y (array): An array containing the interval [c,d] in y-direction.
         
