@@ -2,7 +2,7 @@
 """
 Created on Sun Jul  7 19:30:38 2024
 
-@author: phili
+@author: Philipp Felsen
 """
 
 
