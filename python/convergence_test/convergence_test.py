@@ -7,6 +7,7 @@ Created on Mon Jul  8 16:47:28 2024
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib.ticker import MaxNLocator
 
 def estimate_coefficients(stoch_levels, values):
     """
@@ -33,7 +34,7 @@ def estimate_coefficients(stoch_levels, values):
     return a
 
 
-def plot_mean_and_variance(file, parameter, parameter_values):
+def plot_mean_and_variance(file, parameter, parameter_values, plotting_bool=True):
     """
     Function to plot mean and variance values and their absolute differences for given parameter values.
     
@@ -60,6 +61,7 @@ def plot_mean_and_variance(file, parameter, parameter_values):
     for idx, value in enumerate(parameter_values):
         # Filter the DataFrame for the current value 
         df_filtered = df[df[parameter] == value].sort_values(by='stochLevel')
+        df_filtered = df_filtered[df_filtered['stochLevel'] != 6]
 
         # Calculate the absolute differences of Mean values between consecutive stochLevels
         mean_diff = abs(df_filtered['Mean'].diff().iloc[1:])
@@ -81,6 +83,9 @@ def plot_mean_and_variance(file, parameter, parameter_values):
     plt.title(r"-$\log(|\mathbb{E}[Q_{h_l}]|)$ and --$\log(|\mathbb{E}[Q_{h_l}-Q_{h_{l-1}}]|)$", fontsize=label_fontsize)
     plt.legend(fontsize = tick_fontsize)
     plt.xticks(fontsize=tick_fontsize)
+    ax = plt.gca()
+    ax.yaxis.get_offset_text().set_fontsize(tick_fontsize)
+    ax.xaxis.set_major_locator(MaxNLocator(integer=True))
     plt.yticks(fontsize=tick_fontsize)
     plt.grid(True)
 
@@ -89,6 +94,7 @@ def plot_mean_and_variance(file, parameter, parameter_values):
     for idx, value in enumerate(parameter_values):
         # Filter the DataFrame for the current value
         df_filtered = df[df[parameter] == value].sort_values(by='stochLevel')
+        df_filtered = df_filtered[df_filtered['stochLevel'] != 6]
 
         # Calculate the absolute differences of variance values between consecutive stochLevels
         var_diff = abs(df_filtered['sVar'].diff().iloc[1:])
@@ -112,9 +118,15 @@ def plot_mean_and_variance(file, parameter, parameter_values):
     plt.legend(fontsize = tick_fontsize)
     plt.xticks(fontsize=tick_fontsize)
     plt.yticks(fontsize=tick_fontsize)
+    ax = plt.gca()
+    ax.yaxis.get_offset_text().set_fontsize(tick_fontsize)
+    ax.xaxis.set_major_locator(MaxNLocator(integer=True))
     plt.grid(True)
-
     plt.tight_layout()
+    
+    if plotting_bool==True:
+        name = parameter + "_convergence_plot.png"
+        plt.savefig(name, dpi=500)
     plt.show()
     
   
