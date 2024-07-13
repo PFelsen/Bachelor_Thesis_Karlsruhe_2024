@@ -11,11 +11,11 @@ import numpy as np
 
 # File paths for the pickle files
 file_paths = [
-    'df_sc_1.pickle',
-    'df_sc_2.pickle',
-    'df_sc_3.pickle',
-    'df_sc_4.pickle',
-    'df_sc_5.pickle'
+    'DataFrames/df_sc_1.pickle',
+    'DataFrames/df_sc_2.pickle',
+    'DataFrames/df_sc_3.pickle',
+    'DataFrames/df_sc_4.pickle',
+    'DataFrames/df_sc_5.pickle'
 ]
 
 # Load the dataframes from the pickle files
