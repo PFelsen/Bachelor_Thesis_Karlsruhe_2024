@@ -93,8 +93,8 @@ def plot_mean_convergence(stoch_level):
     plt.show()
     
     # Estimate the parameter a
-    hl = np.array([2**-l for l in combined_df_with_spacelevel["SpaceLevel"][2:]])
-    log_diffs = np.log(diffs[1:])
+    hl = np.array([2**-l for l in combined_df_with_spacelevel["SpaceLevel"][1:]])
+    log_diffs = np.log(diffs)
     log_hl = np.log(hl)
     
     # Use numpy.polyfit to estimate the parameter a
