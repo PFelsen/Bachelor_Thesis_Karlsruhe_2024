@@ -25,25 +25,8 @@ Keep in mind that the current code can only be run on a single core. The paralle
 - **python/sparse_vs_full_error_polynomial_plots.py**: Error plots of sparse vs. full grid quadrature.
 - **python/sparse_vs_full_grid_random_polynomial_test.py**: Tests comparing sparse and full grid methods with random polynomial functions.
 
-## Getting Started
-
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/PFelsen/Bachelor_Thesis_Karlsruhe_2024.git
-    ```
-2. Navigate to the project directory:
-    ```bash
-    cd Bachelor_Thesis_Karlsruhe_2024
-    ```
-3. Refer to the individual README files in the respective folders for detailed instructions on running the code.
-
 ## Requirements
 
 - Python 3.x
 - Jupyter Notebook
 - M++ software (included in the repository)
-
-## Contact
-
-For any questions or issues, please contact PFelsen at [your-email@example.com].
-
