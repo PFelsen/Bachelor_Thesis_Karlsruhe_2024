@@ -6,7 +6,7 @@ To reproduce the numerical results in my Bachelor's thesis, refer to the Jupyter
 
 ## Repository Structure
 
-### Folders
+## Folders
 ## mpp
 The mpp folder contains a copy of the M++ software (https://www.math.kit.edu/ianm3/seite/mplusplus/en). This version will not be changed again. It is a copy of the branch 767-repair-stochasticcollocation, and there is no version control over it through the main M++ Git repository.
 For execution instructions, please refer to the M++ README file.
