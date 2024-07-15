@@ -19,11 +19,14 @@ Keep in mind that the current code can only be run on a single core. The paralle
 ### Key Files
 
 - **mpp/notebooks/SC/UQ_SC_MC_Laplace.ipynb**: Jupyter Notebook for reproducing thesis results.
-- **python/sparse_grid_integration_2D.py**: Implementation of sparse grid integration for 2D functions.
-- **python/sparse_grid_integration_3D.py**: Implementation of sparse grid integration for 3D functions.
-- **python/sparse_grid_vs_full_grid_quadrature_2D.py**: Comparison of sparse grid and full grid quadrature in 2D.
-- **python/sparse_vs_full_error_polynomial_plots.py**: Error plots of sparse vs. full grid quadrature.
-- **python/sparse_vs_full_grid_random_polynomial_test.py**: Tests comparing sparse and full grid methods with random polynomial functions.
+- **python/sparse_grid_integration/sparse_grid_integration_2D.py**: Implementation of sparse grid integration for 2D functions.
+- **python/sparse_grid_integration/sparse_grid_integration_3D.py**: Implementation of sparse grid integration for 3D functions.
+- **python/sparse_grid_integration/sparse_grid_vs_full_grid_quadrature_2D.py**: Comparison of sparse grid and full grid quadrature in 2D.
+- **python/sparse_grid_integration/sparse_vs_full_error_polynomial_plots.py**: Error plots of sparse vs. full grid quadrature.
+- **python/sparse_grid_integration/sparse_vs_full_grid_random_polynomial_test.py**: Tests comparing sparse and full grid methods with random polynomial functions.
+- **python/convergence_tests/convergence_tests_kernel.py**: Convergence tests for different kernels.
+- **python/convergence_tests/convergence_tests_standard.py**: Convergence tests for standard kernel.
+- **python/convergence_tests/DataFrames**: Contains the raw DataFrames created with the Jupyter Notebook to calculate the convergence results.
 
 ## Requirements
 
