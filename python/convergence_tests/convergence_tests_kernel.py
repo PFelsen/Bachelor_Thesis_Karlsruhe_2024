@@ -174,7 +174,7 @@ def plot_and_estimate(df, stoch_levels, param_name, other_params):
         plt.show()
 
 # Example call of the function for all new dataframes and stochLevels 2 and 5
-stoch_levels = [2, 5]
+stoch_levels = [2, 4]
 param_names = ['sigma', 'alpha', 'length']
 combined_dfs = [combined_df_sigma, combined_df_alpha, combined_df_length]
 

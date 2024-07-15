@@ -76,8 +76,8 @@ def plot_mean_convergence(stoch_level):
     # Set axis labels and title
     plt.xlabel('SpaceLevel', fontsize=label_fontsize)
     plt.ylabel(r'$\log\left(\left|\mathbb{E}[\cdot]\right|\right)$', fontsize=label_fontsize)
-    plt.title(r'$\log\left(\left|\mathbb{E}[Q_{h_l} - Q_{h_{l-1}}]\right|\right)$ and $\log\left(\left|\mathbb{E}[Q_{h_l}]\right|\right)$ for StochLevel=' + str(stoch_level), fontsize=label_fontsize)
-
+    plt.title(r'--$\log\left(\left|\mathbb{E}[Q_{h_l} - Q_{h_{l-1}}]\right|\right)$ and -$\log\left(\left|\mathbb{E}[Q_{h_l}]\right|\right)$ for StochLevel=' + str(stoch_level), fontsize=label_fontsize)
+    
     plt.xticks(ticks=combined_df_with_spacelevel["SpaceLevel"], fontsize=tick_fontsize)
     plt.yticks(fontsize=tick_fontsize)
     
@@ -103,12 +103,7 @@ def plot_mean_convergence(stoch_level):
     print(f"StochLevel {stoch_level}, Estimated parameter a: {a_estimated}")
 
 # Example function calls to plot mean convergence for different stochastic levels
-plot_mean_convergence(1)
 plot_mean_convergence(2)
-plot_mean_convergence(3)
-plot_mean_convergence(4)
-plot_mean_convergence(5)
-plot_mean_convergence(6)
 plot_mean_convergence(7)
 
 
