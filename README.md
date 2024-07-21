@@ -8,7 +8,7 @@ To reproduce the numerical results in my Bachelor's thesis, refer to the Jupyter
 
 ### Folders
 
-- **mpp**: The mpp folder contains a copy of the M++ software (https://www.math.kit.edu/ianm3/seite/mplusplus/en). This version will not be changed again. It is a copy of the branch 767-repair-stochasticcollocation, and there is no version control over it through the main M++ Git repository.
+- **mpp**: The mpp folder contains a copy of the M++ software (https://www.math.kit.edu/ianm3/seite/mplusplus/en). This version will not be changed again. It is a copy of the branch 767-repair-stochasticcollocation, and there is no version control over it through the main M++ Git repository (https://gitlab.kit.edu/kit/mpp/mpp).
 For execution instructions, please refer to the M++ README file.
 M++ (Meshes, Multigrid, and more) is a parallel finite element software developed at the Institute for Applied and Numerical Mathematics in the Scientific Computing group. It is used in various research projects and for teaching purposes. M++ is implemented in the C++ programming language and utilizes Open MPI to distribute the computational load across several computing nodes. The library TASMANIAN (https://github.com/ORNL/TASMANIAN) is used for stochastic collocation.
 Keep in mind that the current code can only be run on a single core. The parallel implementation has not yet been implemented due to the negative weights in the quadrature rule used.
